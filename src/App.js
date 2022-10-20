@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+// import DiagramBpmn from './components/DiagramBpmn';
+// import FormIO from './components/FormIO';
+
+
+const DiagramBpmn = React.lazy(() => import('./components/DiagramBpmn'));
+const FormIO = React.lazy(() => import('./components/FormIO'));
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <DiagramBpmn /> */}
+      <Router basename='/'>
+      <React.Suspense fallback={null}>
+        <Routes>
+          <Route path="" element={<DiagramBpmn />} />
+          <Route path="FormIO" element={<FormIO />} />
+        </Routes>
+      </React.Suspense>
+    </Router>
     </div>
   );
 }
-
 export default App;
